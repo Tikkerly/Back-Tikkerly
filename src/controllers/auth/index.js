@@ -1,11 +1,49 @@
 const { response } = require("express");
 const bcryptjs = require("bcrypt");
 const User = require("../../models/User");
+const ServiceAgent = require("../../models/ServiceAgent");
 const { generarJWT, googleVerify } = require("../../helpers");
 
-const login = async (req, res = response) => {
-  const { email, password } = req.body;
+const loginAgent = async (email, password, res) => {
   try {
+    // Verificar si el agente de servicio existe
+    const agent = await ServiceAgent.findOne({ email });
+    if (!agent) {
+      return res.status(400).json({
+        message: "Credenciales incorrectas.",
+      });
+    }
+
+    // Verificar el estado del agente de servicio
+    if (!agent.status) {
+      return res.status(400).json({
+        message: "Usuario inválido. Consulte con un administrador",
+      });
+    }
+    // Validar contraseña
+    const validPassword = bcryptjs.compareSync(password, agent.password);
+
+    if (!validPassword) {
+      return res.status(400).json({
+        message: "Credenciales incorrectas",
+      });
+    }
+    // Generar token
+    const token = generarJWT(agent.id);
+
+    return res.status(200).json({
+      user: agent,
+      token,
+    });
+  } catch ({ message }) {
+    return res.status(500).json({ message });
+  }
+};
+
+const login = async (req, res = response) => {
+  const { email, password, isUser } = req.body;
+  try {
+    if (!isUser) return loginAgent(email, password, res);
     // Verificar si el email existe
     const user = await User.findOne({ email });
     if (!user) {
