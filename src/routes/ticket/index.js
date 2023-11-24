@@ -20,6 +20,11 @@ ticketRoutes.get(
   ticketControllers.getTicketById
 );
 
+ticketRoutes.get(
+  "/technician/:id",
+  ticketControllers.getTicketsByTechnician
+)
+
 ticketRoutes.post(
   "/registerticket",
 
