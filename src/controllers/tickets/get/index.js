@@ -47,8 +47,26 @@ const getTicketById = async (req, res) => {
   }
 };
 
+const getTicketsByTechnician = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [total, tickets] = await Promise.all([
+      Ticket.countDocuments({ technician_id: id }),
+      Ticket.find({ technician_id: id })
+        .populate("company_id")
+        .populate("finalClient_id")
+        .populate("serviceClient_id")
+        .populate("technician_id"),
+    ]);
+    return res.status(200).json({ total, tickets });
+  } catch ({ message }) {
+    return res.status(500).json({ message });
+  }
+};
+
 module.exports = {
   getTicketsByUser,
   getTicketsByAgent,
   getTicketById,
+  getTicketsByTechnician
 };
