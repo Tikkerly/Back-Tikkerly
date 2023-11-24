@@ -47,9 +47,6 @@ const UserSchema = Schema({
     type: String,
     required: [true, "La dirección es obligatoria."],
   },
-  company: {
-    type: String,
-  },
   trialPeriod: {
     type: Boolean,
     default: true,

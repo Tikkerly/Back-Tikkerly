@@ -16,6 +16,9 @@ const TicketSchema = Schema({
     type: String,
     required: [true, "Se requiere una fecha de registro."],
   },
+  companies: {
+    type: [String],
+  },
   startDate: {
     type: String,
     required: [true, "Se requiere una fecha de agendamiento."],
@@ -68,6 +71,9 @@ const TicketSchema = Schema({
       "Rechazado",
     ],
     default: "Pendiente",
+  },
+  company: {
+    type: String,
   },
   company_id: {
     type: Schema.Types.ObjectId,
