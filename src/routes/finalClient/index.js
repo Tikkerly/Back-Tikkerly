@@ -7,6 +7,7 @@ const {
   existEmail,
   userExistById,
   existDocument,
+  finalClientExistById
 } = require("../../helpers/customValidations/index");
 
 finalClientRoutes.get("/", finalClientControllers.getFinalClients);
@@ -37,7 +38,7 @@ finalClientRoutes.put(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(finalClientExistById),
     fieldsValidate,
   ],
   finalClientControllers.editFinalClient
@@ -48,7 +49,7 @@ finalClientRoutes.get(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(finalClientExistById),
     fieldsValidate,
   ],
   finalClientControllers.getFinalClientByID
@@ -59,7 +60,7 @@ finalClientRoutes.delete(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(finalClientExistById),
     fieldsValidate,
   ],
   finalClientControllers.deleteFinalClient

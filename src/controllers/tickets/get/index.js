@@ -10,8 +10,8 @@ const getTicketsByUser = async (req, res) => {
       Ticket.countDocuments({ company_id: id }),
       Ticket.find({ company_id: id })
         .populate("company_id")
-        .populate("finalClient_id")
         .populate("serviceClient_id")
+        .populate("finalClient_id")
         .populate("technician_id"),
     ]);
     return res.status(200).json({ total, tickets });
