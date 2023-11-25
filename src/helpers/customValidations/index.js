@@ -1,4 +1,6 @@
 const User = require("../../models/User");
+const FinalClient = require("../../models/FinalClient");
+const ServiceAgent = require("../../models/ServiceAgent");
 
 const existEmail = async (email = "") => {
   const user = await User.findOne({ email });
@@ -20,9 +22,23 @@ const userExistById = async (id) => {
     throw new Error(`El usuario con id ${id} no existe`);
   }
 };
+const serviceAgentExistById = async (id) => {
+  const serviceAgentExist = await ServiceAgent.findById(id);
+  if (!serviceAgentExist) {
+    throw new Error(`El agente de servicio con id ${id} no existe`);
+  }
+};
+const finalClientExistById = async (id) => {
+  const finalClientExist = await FinalClient.findById(id);
+  if (!finalClientExist) {
+    throw new Error(`El cliente final con id ${id} no existe`);
+  }
+};
 
 module.exports = {
   existEmail,
   userExistById,
   existDocument,
+  serviceAgentExistById,
+  finalClientExistById,
 };

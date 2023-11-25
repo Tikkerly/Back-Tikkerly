@@ -7,6 +7,7 @@ const {
   existEmail,
   userExistById,
   existDocument,
+  serviceAgentExistById,
 } = require("../../helpers/customValidations/index");
 
 serviceAgentRoutes.get("/", serviceAgentControllers.getServiceAgents);
@@ -38,7 +39,7 @@ serviceAgentRoutes.put(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(serviceAgentExistById),
     fieldsValidate,
   ],
   serviceAgentControllers.editServiceAgent
@@ -49,7 +50,7 @@ serviceAgentRoutes.get(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(serviceAgentExistById),
     fieldsValidate,
   ],
   serviceAgentControllers.getServiceAgentByID
@@ -60,7 +61,7 @@ serviceAgentRoutes.delete(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(serviceAgentExistById),
     fieldsValidate,
   ],
   serviceAgentControllers.deleteServiceAgent

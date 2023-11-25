@@ -4,15 +4,15 @@ const {
   sendPasswordResetEmail,
   validateJWTEmail,
 } = require("../../../helpers/index");
-const User = require("../../../models/User");
+const ServiceAgent = require("../../../models/ServiceAgent");
 
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
     console.log(email);
-    const user = await User.findOne({ email });
+    const serviceAgent = await ServiceAgent.findOne({ email });
 
-    const token = await generarJWT(user.id);
+    const token = await generarJWT(serviceAgent.id);
     sendPasswordResetEmail(email, token);
     return res.status(200).json({
       message: "Revisa tu email para restablecerla contraseña",
