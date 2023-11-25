@@ -21,7 +21,7 @@ ticketRoutes.get(
 );
 
 ticketRoutes.get(
-  "/technician/:id",
+  "/technician/:id/:companyId",
   ticketControllers.getTicketsByTechnician
 )
 
