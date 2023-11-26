@@ -1,17 +1,14 @@
 const { hashPassword } = require("../../../helpers/index");
-const User = require("../../../models/User");
+const Technician = require("../../../models/Technician");
 
 const editTechnician = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, document, documentType, ...rest } = req.body;
-    if (password) {
-      rest.password = hashPassword(password);
-    }
-    const user = await User.findByIdAndUpdate(id, rest, { new: true });
+    const { email, document, documentType, ...rest } = req.body;
+    const technician = await Technician.findByIdAndUpdate(id, rest, { new: true });
     return res
       .status(200)
-      .json(user);
+      .json(technician);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }

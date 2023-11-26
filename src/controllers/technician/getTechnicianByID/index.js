@@ -1,10 +1,10 @@
-const FinalClient = require("../../../models/FinalClient");
+const Technician = require("../../../models/Technician");
 
 const getTechnicianByID = async (req, res) => {
   const { id } = req.params;
   try {
-    const finalClient = await FinalClient.findById(id);
-    return res.status(200).json(finalClient);
+    const technician = await Technician.findById(id);
+    return res.status(200).json(technician);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
