@@ -32,7 +32,6 @@ const UserSchema = Schema({
   },
   document: {
     type: String,
-    required: [true, "El valor del documento es obligatorio"],
   },
   personType: {
     type: String,
@@ -68,6 +67,10 @@ const UserSchema = Schema({
     default: false,
   },
   isPaid: {
+    type: Boolean,
+    default: false,
+  },
+  banned: {
     type: Boolean,
     default: false,
   },

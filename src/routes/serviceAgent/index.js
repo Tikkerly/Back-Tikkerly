@@ -55,7 +55,7 @@ serviceAgentRoutes.get(
   serviceAgentControllers.getServiceAgentByID
 );
 
-serviceAgentRoutes.delete(
+serviceAgentRoutes.post(
   "/deleteserviceagent/:id",
   validarJWT,
   [

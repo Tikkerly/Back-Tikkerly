@@ -7,7 +7,7 @@ const {
   existEmail,
   userExistById,
   existDocument,
-  finalClientExistById
+  finalClientExistById,
 } = require("../../helpers/customValidations/index");
 
 finalClientRoutes.get("/getbyid/:_id", finalClientControllers.getFinalClients);
@@ -54,7 +54,7 @@ finalClientRoutes.get(
   finalClientControllers.getFinalClientByID
 );
 
-finalClientRoutes.delete(
+finalClientRoutes.post(
   "/deletefinalclient/:id",
   validarJWT,
   [

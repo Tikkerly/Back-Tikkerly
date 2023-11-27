@@ -18,8 +18,8 @@ paymentRoute.post("/", (req, res) => {
     ],
     back_urls: {
       success: "http://localhost:3000/user/ispaid",
-      failure: "http://localhost:3000/user",
-      pending: "http://localhost:3000/user",
+      failure: "http://localhost:3000/login",
+      pending: "http://localhost:3000/login",
     },
     auto_return: "approved",
   };

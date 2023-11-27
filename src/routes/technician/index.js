@@ -44,7 +44,7 @@ technicianRoutes.get(
   technicianControllers.getTechnicianByID
 );
 
-technicianRoutes.delete(
+technicianRoutes.post(
   "/deletetechnician/:id",
   validarJWT,
   [
