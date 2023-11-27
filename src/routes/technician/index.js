@@ -4,8 +4,7 @@ const { technicianControllers } = require("../../controllers");
 const { validarJWT, fieldsValidate } = require("../../middlewares/index");
 const { check } = require("express-validator");
 const {
-  existEmail,
-  userExistById,
+  technicianExistById,
   existDocument,
 } = require("../../helpers/customValidations/index");
 
@@ -29,7 +28,7 @@ technicianRoutes.put(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(technicianExistById),
     fieldsValidate,
   ],
   technicianControllers.editTechnician
@@ -40,7 +39,7 @@ technicianRoutes.get(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(technicianExistById),
     fieldsValidate,
   ],
   technicianControllers.getTechnicianByID
@@ -51,7 +50,7 @@ technicianRoutes.delete(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(technicianExistById),
     fieldsValidate,
   ],
   technicianControllers.deleteTechnician

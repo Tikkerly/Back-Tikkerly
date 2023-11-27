@@ -4,7 +4,7 @@ const getFinalClients = async (req, res) => {
   try {
     const [total, finalClients] = await Promise.all([
       FinalClient.countDocuments(),
-      FinalClient.find(),
+      FinalClient.find().populate("company_id").populate("serviceClient_id"),
     ]);
     return res.status(200).json({ total, finalClients });
   } catch (error) {

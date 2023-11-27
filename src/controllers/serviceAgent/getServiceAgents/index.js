@@ -4,7 +4,8 @@ const getServiceAgents = async (req, res) => {
   try {
     const [total, serviceAgent] = await Promise.all([
       ServiceAgent.countDocuments(),
-      ServiceAgent.find(),
+      ServiceAgent.find()
+      .populate("company_id"),
     ]);
     return res.status(200).json({ total, serviceAgent });
   } catch (error) {

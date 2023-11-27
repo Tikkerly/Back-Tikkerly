@@ -1,6 +1,7 @@
 const User = require("../../models/User");
 const FinalClient = require("../../models/FinalClient");
 const ServiceAgent = require("../../models/ServiceAgent");
+const Technician = require("../../models/Technician");
 
 const existEmail = async (email = "") => {
   const user = await User.findOne({ email });
@@ -34,6 +35,12 @@ const finalClientExistById = async (id) => {
     throw new Error(`El cliente final con id ${id} no existe`);
   }
 };
+const technicianExistById = async (id) => {
+  const technicianExist = await Technician.findById(id);
+  if (!technicianExist) {
+    throw new Error(`El técnico con id ${id} no existe`);
+  }
+};
 
 module.exports = {
   existEmail,
@@ -41,4 +48,5 @@ module.exports = {
   existDocument,
   serviceAgentExistById,
   finalClientExistById,
+  technicianExistById,
 };
