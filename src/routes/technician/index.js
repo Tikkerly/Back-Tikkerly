@@ -15,7 +15,9 @@ technicianRoutes.post(
   [
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "El email es obligatorio").not().isEmpty(),
-    check("document", "El documento de identidad es obligatorio").not().isEmpty(),
+    check("document", "El documento de identidad es obligatorio")
+      .not()
+      .isEmpty(),
     check("document").custom(existDocument),
 
     fieldsValidate,
@@ -45,7 +47,7 @@ technicianRoutes.get(
   technicianControllers.getTechnicianByID
 );
 
-technicianRoutes.delete(
+technicianRoutes.post(
   "/deletetechnician/:id",
   validarJWT,
   [

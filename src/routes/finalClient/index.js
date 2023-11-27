@@ -7,7 +7,7 @@ const {
   existEmail,
   userExistById,
   existDocument,
-  finalClientExistById
+  finalClientExistById,
 } = require("../../helpers/customValidations/index");
 
 finalClientRoutes.get("/", finalClientControllers.getFinalClients);
@@ -17,7 +17,9 @@ finalClientRoutes.post(
   [
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "EL email es obligatorio").not().isEmpty(),
-    check("document", "El documento de identidad es obligatorio").not().isEmpty(),
+    check("document", "El documento de identidad es obligatorio")
+      .not()
+      .isEmpty(),
     check("document").custom(existDocument),
     fieldsValidate,
   ],
@@ -55,7 +57,7 @@ finalClientRoutes.get(
   finalClientControllers.getFinalClientByID
 );
 
-finalClientRoutes.delete(
+finalClientRoutes.post(
   "/deletefinalclient/:id",
   validarJWT,
   [
