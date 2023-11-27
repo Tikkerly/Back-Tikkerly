@@ -1,16 +1,18 @@
-const FinalClient = require("../../../models/FinalClient");
+const Technician = require("../../../models/Technician");
 
 const deleteTechnician = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const finalClient = await FinalClient.findByIdAndDelete(id);
+    const technician = await Technician.findByIdAndUpdate(id, {
+      banned: true,
+    });
 
     return res
       .status(200)
-      .json({ message: "El cliente final ha sido borrado con éxito" });
+      .json({ message: "El técnico ha sido borrado con éxito", technician });
   } catch (error) {
-    return res.status(400).json({ message: "Error al borrar al cliente final." });
+    return res.status(400).json({ message: "Error al borrar al técnico." });
   }
 };
 

@@ -23,6 +23,7 @@ const registerServiceAgent = async (req, res) => {
       password,
       // img,
       document,
+      documentType,
       phone,
       company_id,
     } = req.body;
@@ -58,6 +59,7 @@ const registerServiceAgent = async (req, res) => {
       email,
       password: encryptedPassword,
       document,
+      documentType,
       phone,
       // img: secure_url,
       company_id

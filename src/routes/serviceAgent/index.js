@@ -6,9 +6,11 @@ const { check } = require("express-validator");
 const {
   existEmail,
   userExistById,
+  existDocument,
+  serviceAgentExistById,
 } = require("../../helpers/customValidations/index");
 
-serviceAgentRoutes.get("/", serviceAgentControllers.getServiceAgents);
+serviceAgentRoutes.get("/getbyid/:_id", serviceAgentControllers.getServiceAgents);
 
 serviceAgentRoutes.post(
   "/registerserviceagent",
@@ -16,6 +18,7 @@ serviceAgentRoutes.post(
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "EL email es obligatorio").not().isEmpty(),
     check("password", "La contraseña es obligatoria").not().isEmpty(),
+    check("document", "El documento de identidad es obligatorio").not().isEmpty(),
     fieldsValidate,
   ],
   serviceAgentControllers.registerServiceAgent
@@ -35,7 +38,7 @@ serviceAgentRoutes.put(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(serviceAgentExistById),
     fieldsValidate,
   ],
   serviceAgentControllers.editServiceAgent
@@ -46,18 +49,18 @@ serviceAgentRoutes.get(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(serviceAgentExistById),
     fieldsValidate,
   ],
   serviceAgentControllers.getServiceAgentByID
 );
 
-serviceAgentRoutes.delete(
+serviceAgentRoutes.post(
   "/deleteserviceagent/:id",
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(serviceAgentExistById),
     fieldsValidate,
   ],
   serviceAgentControllers.deleteServiceAgent

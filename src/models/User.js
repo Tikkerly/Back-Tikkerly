@@ -28,7 +28,12 @@ const UserSchema = Schema({
   },
   nit: {
     type: String,
-    required: [true, "El Nit es obligatorio"],
+
+    enum: ["NIT", "DNI", "PASAPORTE"],
+  },
+  document: {
+    type: String,
+
   },
   personType: {
     type: String,
@@ -64,6 +69,10 @@ const UserSchema = Schema({
     default: false,
   },
   isPaid: {
+    type: Boolean,
+    default: false,
+  },
+  banned: {
     type: Boolean,
     default: false,
   },

@@ -6,15 +6,19 @@ const { check } = require("express-validator");
 const {
   existEmail,
   userExistById,
+  existDocument,
+  finalClientExistById,
+
 } = require("../../helpers/customValidations/index");
 
-finalClientRoutes.get("/", finalClientControllers.getFinalClients);
+finalClientRoutes.get("/getbyid/:_id", finalClientControllers.getFinalClients);
 
 finalClientRoutes.post(
   "/registerfinalclient",
   [
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "EL email es obligatorio").not().isEmpty(),
+    check("document", "El documento de identidad es obligatorio").not().isEmpty(),
     fieldsValidate,
   ],
   finalClientControllers.registerFinalClient
@@ -34,7 +38,7 @@ finalClientRoutes.put(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(finalClientExistById),
     fieldsValidate,
   ],
   finalClientControllers.editFinalClient
@@ -45,18 +49,18 @@ finalClientRoutes.get(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(finalClientExistById),
     fieldsValidate,
   ],
   finalClientControllers.getFinalClientByID
 );
 
-finalClientRoutes.delete(
+finalClientRoutes.post(
   "/deletefinalclient/:id",
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(finalClientExistById),
     fieldsValidate,
   ],
   finalClientControllers.deleteFinalClient

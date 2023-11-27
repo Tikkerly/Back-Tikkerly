@@ -4,17 +4,21 @@ const { technicianControllers } = require("../../controllers");
 const { validarJWT, fieldsValidate } = require("../../middlewares/index");
 const { check } = require("express-validator");
 const {
-  existEmail,
-  userExistById,
+
+  technicianExistById,
+  existDocument,
+
 } = require("../../helpers/customValidations/index");
 
-technicianRoutes.get("/", technicianControllers.getTechnicians);
+technicianRoutes.get("/getbyid/:_id", validarJWT, technicianControllers.getTechnicians);
 
 technicianRoutes.post(
   "/registertechnician",
   [
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "El email es obligatorio").not().isEmpty(),
+    check("document", "El documento de identidad es obligatorio").not().isEmpty(),
+
 
     fieldsValidate,
   ],
@@ -26,7 +30,7 @@ technicianRoutes.put(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(technicianExistById),
     fieldsValidate,
   ],
   technicianControllers.editTechnician
@@ -37,18 +41,18 @@ technicianRoutes.get(
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(technicianExistById),
     fieldsValidate,
   ],
   technicianControllers.getTechnicianByID
 );
 
-technicianRoutes.delete(
+technicianRoutes.post(
   "/deletetechnician/:id",
   validarJWT,
   [
     check("id", "El id no es valido").isMongoId(),
-    check("id").custom(userExistById),
+    check("id").custom(technicianExistById),
     fieldsValidate,
   ],
   technicianControllers.deleteTechnician

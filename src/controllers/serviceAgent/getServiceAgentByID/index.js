@@ -1,10 +1,10 @@
-const FinalClient = require("../../../models/FinalClient");
+const ServiceAgent = require("../../../models/ServiceAgent");
 
 const getServiceAgentByID = async (req, res) => {
   const { id } = req.params;
   try {
-    const finalClient = await FinalClient.findById(id);
-    return res.status(200).json(finalClient);
+    const serviceAgent = await ServiceAgent.findById(id).populate("company_id");
+    return res.status(200).json(serviceAgent);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
