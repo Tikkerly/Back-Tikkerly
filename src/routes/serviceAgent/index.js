@@ -10,7 +10,7 @@ const {
   serviceAgentExistById,
 } = require("../../helpers/customValidations/index");
 
-serviceAgentRoutes.get("/", serviceAgentControllers.getServiceAgents);
+serviceAgentRoutes.get("/getbyid/:_id", serviceAgentControllers.getServiceAgents);
 
 serviceAgentRoutes.post(
   "/registerserviceagent",
@@ -19,7 +19,6 @@ serviceAgentRoutes.post(
     check("email", "EL email es obligatorio").not().isEmpty(),
     check("password", "La contraseña es obligatoria").not().isEmpty(),
     check("document", "El documento de identidad es obligatorio").not().isEmpty(),
-    check("document").custom(existDocument),
     fieldsValidate,
   ],
   serviceAgentControllers.registerServiceAgent
