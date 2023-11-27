@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const FinalClientSchema = Schema({
+
   username: {
     type: String,
     required: [true, "Se requiere un nombre."],
@@ -45,6 +46,7 @@ const FinalClientSchema = Schema({
     required: [true, "Es obligatorio asignar un cliente de servicio."],
   },
 });
+
 
 FinalClientSchema.methods.toJSON = function () {
   const { __v, ...user } = this.toObject();

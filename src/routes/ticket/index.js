@@ -39,6 +39,7 @@ ticketRoutes.delete(
 );
 ticketRoutes.put(
   "/updateticket/:id",
+  validarJWT,
   [check("id", "El id no es válido").isMongoId(), fieldsValidate],
   ticketControllers.updateTicket
 );

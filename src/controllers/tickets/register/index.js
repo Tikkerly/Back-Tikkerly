@@ -11,7 +11,6 @@ const registerTicket = async (req, res) => {
       serviceType,
       serviceDescription,
       startDate,
-      companies,
       company_id,
       technician_id,
       finalClient_id,
@@ -28,7 +27,6 @@ const registerTicket = async (req, res) => {
       serviceType,
       ammount,
       startDate,
-      companies,
       cost,
       utility,
       others,
@@ -43,6 +41,7 @@ const registerTicket = async (req, res) => {
     await ticket.save();
 
     const user = await User.findById(company_id);
+    //console.log(user);
     sendTicketEmail(user.email);
 
     return res.status(201).json({ message: "Ticket registrado con éxito" });

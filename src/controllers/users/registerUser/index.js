@@ -23,6 +23,7 @@ const registerUser = async (req, res) => {
   const trialStartDate = format(actualDate, "dd/MM/yy");
   const trialEndDate = format(endDate, "dd/MM/yy");
   try {
+
     const {
       username,
       password,
@@ -33,6 +34,7 @@ const registerUser = async (req, res) => {
       document,
       documentType,
     } = req.body;
+
 
     const encryptedPassword = hashPassword(password);
 
@@ -61,8 +63,7 @@ const registerUser = async (req, res) => {
       personType,
       email,
       address,
-      documentType,
-      document,
+      nit,
       img: secure_url,
       phone,
       trialStartDate,

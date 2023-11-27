@@ -6,7 +6,6 @@ const { check } = require("express-validator");
 const {
   existEmail,
   userExistById,
-  existDocument,
 } = require("../../helpers/customValidations/index");
 
 userRoutes.get("/", validarJWT, userControllers.getUsers);
@@ -14,11 +13,10 @@ userRoutes.get("/", validarJWT, userControllers.getUsers);
 userRoutes.post(
   "/registeruser",
   [
+    check("nit", "El NIT es obligatorio").not().isEmpty(),
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "EL email es obligatorio").not().isEmpty(),
     check("email").custom(existEmail),
-    check("document", "El documento de identidad es obligatorio").not().isEmpty(),
-    check("document").custom(existDocument),
     check("password", "La contraseña es obligatoria").not().isEmpty(),
     fieldsValidate,
   ],

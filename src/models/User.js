@@ -26,12 +26,14 @@ const UserSchema = Schema({
     type: String,
     enum: ["Admin", "Client"],
   },
-  documentType: {
+  nit: {
     type: String,
+
     enum: ["NIT", "DNI", "PASAPORTE"],
   },
   document: {
     type: String,
+
   },
   personType: {
     type: String,

@@ -9,7 +9,7 @@ const User = require("../../../models/User");
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
-    console.log(email);
+
     const user = await User.findOne({ email });
 
     const token = await generarJWT(user.id);

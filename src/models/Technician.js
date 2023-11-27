@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const TechnicianSchema = Schema({
+
   username: {
     type: String,
     required: [true, "El nombre es requerido."],
@@ -54,6 +55,7 @@ const TechnicianSchema = Schema({
     ref: "ServiceAgent",
     required: [true, "Es obligatorio asignar un cliente de servicio."],
   },
+
 });
 
 TechnicianSchema.methods.toJSON = function () {

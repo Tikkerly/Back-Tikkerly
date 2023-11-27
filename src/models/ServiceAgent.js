@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const ServiceAgentSchema = Schema({
+
   username: {
     type: String,
     required: [true, "Se requiere un nombre de usuario."],
@@ -44,6 +45,7 @@ const ServiceAgentSchema = Schema({
     default: false,
   },
 });
+
 
 ServiceAgentSchema.methods.toJSON = function () {
   const { __v, password, ...user } = this.toObject();

@@ -23,13 +23,11 @@ const login = async (req, res = response) => {
       });
     }
 
-
     if (!user.activeRegister) {
       return res.status(400).json({
         msg: "Registro: Confirme su registro",
       });
     }
-
 
     // Verificar la contraseña
     const validPassword = bcryptjs.compareSync(password, user.password);
@@ -84,6 +82,7 @@ const googleSignin = async (req, res = response) => {
         trialPeriod: true,
         activeRegister: true,
         status: true,
+        isPaid: false,
       };
 
       user = new User(data);

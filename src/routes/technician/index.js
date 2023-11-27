@@ -4,8 +4,10 @@ const { technicianControllers } = require("../../controllers");
 const { validarJWT, fieldsValidate } = require("../../middlewares/index");
 const { check } = require("express-validator");
 const {
+
   technicianExistById,
   existDocument,
+
 } = require("../../helpers/customValidations/index");
 
 technicianRoutes.get("/getbyid/:_id", validarJWT, technicianControllers.getTechnicians);
@@ -16,6 +18,7 @@ technicianRoutes.post(
     check("username", "EL nombre es obligatorio").not().isEmpty(),
     check("email", "El email es obligatorio").not().isEmpty(),
     check("document", "El documento de identidad es obligatorio").not().isEmpty(),
+
 
     fieldsValidate,
   ],

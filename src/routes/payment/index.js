@@ -17,9 +17,9 @@ paymentRoute.post("/", (req, res) => {
       },
     ],
     back_urls: {
-      success: "http://localhost:3000/user/ispaid",
-      failure: "http://localhost:3000/login",
-      pending: "http://localhost:3000/login",
+      success: "https://front-tikkerly.vercel.app/user/ispaid",
+      failure: "https://front-tikkerly.vercel.app/user",
+      pending: "https://front-tikkerly.vercel.app/user",
     },
     auto_return: "approved",
   };
