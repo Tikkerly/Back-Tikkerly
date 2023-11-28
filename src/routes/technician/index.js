@@ -6,7 +6,6 @@ const { check } = require("express-validator");
 const {
 
   technicianExistById,
-  existDocument,
 
 } = require("../../helpers/customValidations/index");
 

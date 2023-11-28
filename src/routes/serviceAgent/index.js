@@ -6,7 +6,6 @@ const { check } = require("express-validator");
 const {
   existEmail,
   userExistById,
-  existDocument,
   serviceAgentExistById,
 } = require("../../helpers/customValidations/index");
 

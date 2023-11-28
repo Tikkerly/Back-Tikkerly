@@ -38,7 +38,6 @@ const technicianExistById = async (id) => {
 module.exports = {
   existEmail,
   userExistById,
-  existDocument,
   serviceAgentExistById,
   finalClientExistById,
   technicianExistById,
